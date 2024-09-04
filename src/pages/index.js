@@ -6,6 +6,7 @@ import WatchList from "@/pages/watchlist";
 import { useEffect, useState } from "react";
 import { AppContext } from "@/context/AppContext";
 import Banner from "@/components/Banner";
+import MovieList from "@/components/MovieList";
 
 
 
@@ -44,19 +45,21 @@ export default function Home() {
 
   return (
     <>
-    
+    <Navbar />
     <AppContext.Provider value={{watchlist , handleAddtoWatchlist , handleRemoveFromWatchlist , setWatchList}}>
       <BrowserRouter>
-        <Navbar />
+        
+        <Banner />
+        <MovieList />
 
         <Routes>
           <Route
-            path="/"
+            path="/movies"
             element={
-              <>
-                <Banner />{" "}
+              
+                
                 <Movies/>
-              </>
+              
             }
           />
 

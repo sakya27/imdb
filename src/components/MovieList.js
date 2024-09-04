@@ -48,7 +48,7 @@ export default function Movies() {
 
   return (
     <>
-    <Navbar />
+    
     <div className='p-5'>
        <div className='text-2xl m-5 font-bold text-center '>
           {/* <input onChange={(e)=>setSearch(e.target.value)} type="text" placeholder='Search' value={search} /> */}
