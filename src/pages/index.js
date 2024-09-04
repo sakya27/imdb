@@ -47,14 +47,14 @@ export default function Home() {
     <>
     <Navbar />
     <AppContext.Provider value={{watchlist , handleAddtoWatchlist , handleRemoveFromWatchlist , setWatchList}}>
-      <BrowserRouter>
+      
         
         <Banner />
         <MovieList />
 
-        <Routes>
+        {/*<Routes>
           <Route
-            path="/movies"
+            path="/"
             element={
               
                 
@@ -70,7 +70,7 @@ export default function Home() {
             }
           />
         </Routes>
-      </BrowserRouter>
+      </BrowserRouter>*/}
       </AppContext.Provider>
     </>
   );
