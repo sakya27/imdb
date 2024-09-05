@@ -29,6 +29,7 @@ export default function Movies() {
                                              {'adult': false, 'backdrop_path': '/2RVcJbWFmICRDsVxRI8F5xRmRsK.jpg', 'genre_ids': [27, 878, 53], 'id': 762441, 'original_language': 'en', 'original_title': 'A Quiet Place: Day One', 'overview': 'As New York City is invaded by alien creatures who hunt by sound, a woman named Sam fights to survive with her cat.', 'popularity': 690.034, 'poster_path': '/hU42CRk14JuPEdqZG3AWmagiPAP.jpg', 'release_date': '2024-06-26', 'title': 'A Quiet Place: Day One', 'video': false, 'vote_average': 6.833, 'vote_count': 1622}, {'adult': false, 'backdrop_path': '/kwzNUM4yZ26XuNAPSyaWwJeWRP4.jpg', 'genre_ids': [28, 35, 14], 'id': 950526, 'original_language': 'pt', 'original_title': 'O Mestre da Fumaça', 'overview': 'The journey of Gabriel and Daniel, two brothers cursed by the Chinese mafia with its feared Three Generations Revenge, who have already reaped the life of their grandfather and their father. To survive, one of the brothers must learn the Smoke Style secrets, a little known Cannabis martial art, taught by a single master, high up in the mountains.', 'popularity': 832.46, 'poster_path': '/mg6YkwftQOJjpT2ygYlCi11LWeC.jpg', 'release_date': '2023-05-18', 'title': 'The Smoke Master', 'video': false, 'vote_average': 7.667, 'vote_count': 3}, 
                                              {'adult': false, 'backdrop_path': '/hdFIdXwS8FSN2wIsuotjW1mshI0.jpg', 'genre_ids': [16, 35, 12, 10751], 'id': 831815, 'original_language': 'en', 'original_title': 'Saving Bikini Bottom: The Sandy Cheeks Movie', 'overview': 'When Bikini Bottom is scooped from the ocean, scientific squirrel Sandy Cheeks and her pal SpongeBob SquarePants saddle up for Texas to save their town.', 'popularity': 637.221, 'poster_path': '/30YnfZdMNIV7noWLdvmcJS0cbnQ.jpg', 'release_date': '2024-08-01', 'title': 'Saving Bikini Bottom: The Sandy Cheeks Movie', 'video': false, 'vote_average': 6.378, 'vote_count': 196}])
     const [pageNo , setPageNo] = useState(1)
+    const [useCache, setUseCache] = useState(false);
 
 
     const handlePrev = ()=>{
@@ -55,6 +56,24 @@ export default function Movies() {
         })
     } ,[pageNo])*/
 
+    useEffect(()=>{
+
+        const fetchMovies = async () => {
+        try{
+
+        
+            const response = await axios.get(`https://api.themoviedb.org/3/movie/popular?api_key=3aec63790d50f3b9fc2efb4c15a8cf99&language=en-US&page=${pageNo}`)
+            console.log(response.data.results)
+            setMovies(response.data.results)
+        } catch(error)
+        {
+                console.log("API not working");
+                setUseCache(true);
+        }   
+    };
+    fetchMovies();       
+    } ,[pageNo])
+
    
     // useEffect(()=>{
     //     axios.get(`https://api.themoviedb.org/3/search/movie?query=${search}&api_key=f1abfd77dd4b2f4f92e3214ebe9be3a2`).then(function(res){
@@ -79,7 +98,7 @@ export default function Movies() {
            })}
        </div>
 
-       <Pagination pageNo={pageNo} handleNext={handleNext} handlePrev={handlePrev}  />
+       <Pagination pageNo={pageNo} handleNext={handleNext} handlePrev={handlePrev}  useCache={useCache}/>
         
     
     </div>

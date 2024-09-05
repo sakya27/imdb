@@ -48,7 +48,9 @@ function MovieCard({
       className="h-[30vh] w-[200px] bg-center bg-cover rounded-xl hover:scale-110 duration-300 hover:cursor-pointer flex flex-col justify-between items-end"
       style={{
         backgroundImage: `url(${backgroundImg})`,
-      }}
+
+       }}
+       
     >
       {doesContain(movieObj) ? (
         <div
