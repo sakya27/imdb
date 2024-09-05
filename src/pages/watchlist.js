@@ -15,6 +15,7 @@ export default function WatchList() {
   const [search, setSearch] = useState("");
   const [genreList , setGenreList] = useState(['All Genres'])
   const [currGenre , setCurrGenre] = useState('All Genres')
+  const [backgroundImg, setBackgroundImage] = useState('');
 
   console.log(handleRemoveFromWatchlist)
 
@@ -53,6 +54,26 @@ export default function WatchList() {
     setGenreList(['All Genres' , ...temp])
     console.log(temp)
   } , [watchlist])
+
+
+  useEffect(() => {
+    if (poster_path) {
+      const imageUrl = `https://image.tmdb.org/t/p/original/${poster_path}`;
+      const img = new Image();
+      
+      img.onload = () => {
+        // Image loaded successfully
+        setBackgroundImage(imageUrl);
+      };
+      
+      img.onerror = () => {
+        // Image failed to load (invalid URL or network error)
+        setBackgroundImage(`${poster_path}`);
+      };
+
+      img.src = imageUrl; // Triggers the image load
+    } 
+  }, [poster_path]);
 
 
 
@@ -112,8 +133,8 @@ export default function WatchList() {
                   <tr className="border-b-2">
                     <td className="flex items-center px-6 py-4">
                       <img
-                        className="h-[6rem] w-[10rem]"
-                        src={`https://image.tmdb.org/t/p/original/${movieObj.poster_path}`}
+                        className="h-[6rem] w-[6rem]"
+                        src={`url(${backgroundImg})`}
                       />
                       <div className="mx-10">{movieObj.title}</div>
                     </td>

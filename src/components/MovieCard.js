@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import { AppContext } from "../context/AppContext";
+import  { useEffect, useState } from "react";
 
 
 
@@ -11,6 +12,27 @@ function MovieCard({
 }) {
 
    const myContext = useContext(AppContext)
+
+   const [backgroundImg, setBackgroundImage] = useState('');
+
+   useEffect(() => {
+     if (poster_path) {
+       const imageUrl = `https://image.tmdb.org/t/p/original/${poster_path}`;
+       const img = new Image();
+       
+       img.onload = () => {
+         // Image loaded successfully
+         setBackgroundImage(imageUrl);
+       };
+       
+       img.onerror = () => {
+         // Image failed to load (invalid URL or network error)
+         setBackgroundImage(`${poster_path}`);
+       };
+ 
+       img.src = imageUrl; // Triggers the image load
+     } 
+   }, [poster_path]);
 
 
   function doesContain(movieObj) {
@@ -25,7 +47,7 @@ function MovieCard({
     <div
       className="h-[30vh] w-[200px] bg-center bg-cover rounded-xl hover:scale-110 duration-300 hover:cursor-pointer flex flex-col justify-between items-end"
       style={{
-        backgroundImage: `url(https://image.tmdb.org/t/p/original/${poster_path})`,
+        backgroundImage: `url(${backgroundImg})`,
       }}
     >
       {doesContain(movieObj) ? (
