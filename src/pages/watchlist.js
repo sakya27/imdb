@@ -94,9 +94,9 @@ export default function WatchList() {
     <>
 
 <Navbar />
-      <div className="flex justify-center flex-wrap m-4">
+      <div className="flex justify-center space-x-4 py-2 flex-wrap m-4">
         {genreList.map((genre)=>{
-           return <div onClick={()=>handleFilter(genre)} className={ currGenre==genre?"flex justify-center items-center py-4 px-6 bg-blue-400 rounded-xl text-white font-semibold mx-4" :'flex justify-center items-center py-4 px-6 bg-gray-400/50 rounded-xl text-white font-semibold mx-4' }>
+           return <div onClick={()=>handleFilter(genre)} className={ currGenre==genre?"flex justify-center items-center py-2 px-6 bg-blue-400 rounded-xl text-white font-semibold mx-4" :'flex justify-center items-center py-2 px-6 bg-gray-400/50 rounded-xl text-white font-semibold mx-4' }>
            {genre}
          </div>
         })}
@@ -111,8 +111,8 @@ export default function WatchList() {
           className="h-[3rem] w-[18rem] bg-gray-200 outline-none px-4  text-center"
         />
       </div>
-
-      <div className="overflow-x-auto flex justify-center rounded-lg border border-gray-200 m-8">
+      
+      <div className="overflow-x-auto  rounded-lg border border-gray-200 m-8">
         <table className="min-w-full text-gray-500 text-center">
           <thead className="border-b-2">
             <tr>
