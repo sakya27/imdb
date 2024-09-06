@@ -57,23 +57,35 @@ export default function WatchList() {
 
 
   useEffect(() => {
-    if (poster_path) {
-      const imageUrl = `https://image.tmdb.org/t/p/original/${poster_path}`;
-      const img = new Image();
-      
-      img.onload = () => {
-        // Image loaded successfully
-        setBackgroundImage(imageUrl);
-      };
-      
-      img.onerror = () => {
-        // Image failed to load (invalid URL or network error)
-        setBackgroundImage(`${poster_path}`);
-      };
 
-      img.src = imageUrl; // Triggers the image load
-    } 
-  }, [poster_path]);
+   
+
+      for (let i = 0; i < watchlist.length; i++) {
+
+      let poster_path = watchlist[i].poster_path;
+      console.log("Poster path");
+      console.log(poster_path);
+      if (poster_path) {
+        const imageUrl = `https://image.tmdb.org/t/p/original/${poster_path}`;
+        const img = new Image();
+        
+        img.onload = () => {
+          // Image loaded successfully
+          setBackgroundImage(imageUrl);
+        };
+        
+        img.onerror = () => {
+          // Image failed to load (invalid URL or network error)
+          
+          setBackgroundImage(`${poster_path}`);
+        };
+  
+        img.src = imageUrl; // Triggers the image load
+      } 
+
+    }
+    
+  }, [watchlist]);
 
 
 
@@ -129,12 +141,15 @@ export default function WatchList() {
                   .includes(search.toLocaleLowerCase());
               })
               .map((movieObj) => {
+                {console.log("backgroundImage")}
+                {console.log(backgroundImg)}
                 return (
+                  
                   <tr className="border-b-2">
                     <td className="flex items-center px-6 py-4">
                       <img
                         className="h-[6rem] w-[6rem]"
-                        src={`url(${backgroundImg})`}
+                        src={`${backgroundImg}`}
                       />
                       <div className="mx-10">{movieObj.title}</div>
                     </td>
