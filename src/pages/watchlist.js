@@ -94,13 +94,16 @@ export default function WatchList() {
     <>
 
 <Navbar />
-      <div className="flex justify-center space-x-4 py-2 flex-wrap m-4">
+      <div className="flex justify-center flex-wrap px-4  py-2">
+        <div className="flex-wrap space-y-2">
         {genreList.map((genre)=>{
-           return <div onClick={()=>handleFilter(genre)} className={ currGenre==genre?"flex justify-center items-center py-2 px-6 bg-blue-400 rounded-xl text-white font-semibold mx-4" :'flex justify-center items-center py-2 px-6 bg-gray-400/50 rounded-xl text-white font-semibold mx-4' }>
+           return <div onClick={()=>handleFilter(genre)} className={ currGenre==genre?"flex justify-center items-center py-2 px-6 bg-blue-400 rounded-xl text-white font-semibold mx-4  text-center" :'flex justify-center items-center py-2 px-6 bg-gray-400/50 rounded-xl text-white font-semibold mx-4  text-center' }>
            {genre}
          </div>
         })}
       </div>
+      </div>
+      
 
       <div className="flex justify-center my-4">
         <input
@@ -119,12 +122,12 @@ export default function WatchList() {
               <th className="text-gray-600 text-lg font-semibold pb-4">Name</th>
               <th className="flex justify-center">
                 <div onClick={sortIncreasing}className="p-2"><i className="fa-solid fa-arrow-up"></i></div>
-                <div className="text-gray-600 text-lg font-semibold pb-4">Ratings</div>
+                <div className="text-gray-600 text-lg font-semibold pb-4 px-2">Ratings</div>
                 <div onClick={sortDecreasing} className="p-2"><i className="fa-solid fa-arrow-down"></i></div>
               </th>
 
-              <th className="text-gray-600 text-lg font-semibold pb-4">Popularity</th>
-              <th className="text-gray-600 text-lg font-semibold pb-4">Genre</th>
+              <th className="text-gray-600 text-lg font-semibold pb-4 px-2 ">Popularity</th>
+              <th className="text-gray-600 text-lg font-semibold pb-4 px-2">Genre</th>
             </tr>
           </thead>
 
