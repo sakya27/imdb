@@ -141,15 +141,14 @@ export default function WatchList() {
                   .includes(search.toLocaleLowerCase());
               })
               .map((movieObj) => {
-                {console.log("backgroundImage")}
-                {console.log(backgroundImg)}
+                
                 return (
                   
                   <tr className="border-b-2">
                     <td className="flex items-center px-6 py-4">
                       <img
                         className="h-[6rem] w-[6rem]"
-                        src={`${backgroundImg}`}
+                        src={`https://image.tmdb.org/t/p/original/${movieObj.poster_path}`}
                       />
                       <div className="mx-10">{movieObj.title}</div>
                     </td>
