@@ -65,6 +65,7 @@ export default function Movies() {
             const response = await axios.get(`https://api.themoviedb.org/3/movie/popular?api_key=3aec63790d50f3b9fc2efb4c15a8cf99&language=en-US&page=${pageNo}`)
             console.log(response.data.results)
             setMovies(response.data.results)
+            setUseCache(false);
         } catch(error)
         {
                 console.log("API not working");
@@ -73,6 +74,25 @@ export default function Movies() {
     };
     fetchMovies();       
     } ,[pageNo])
+
+    useEffect(()=>{
+
+        const fetchMovies = async () => {
+        try{
+
+            let pageNo = 1;
+            const response = await axios.get(`https://api.themoviedb.org/3/movie/popular?api_key=3aec63790d50f3b9fc2efb4c15a8cf99&language=en-US&page=${pageNo}`)
+            
+            
+            setUseCache(false);
+        } catch(error)
+        {
+                console.log("API not working");
+                setUseCache(true);
+        }   
+    };
+    fetchMovies();       
+    } ,[])
 
    
     // useEffect(()=>{
@@ -97,7 +117,7 @@ export default function Movies() {
               return <MovieCard key={movieObj.id} movieObj={movieObj} poster_path={movieObj.poster_path}  />
            })}
        </div>
-
+        {console.log(useCache)}
        <Pagination pageNo={pageNo} handleNext={handleNext} handlePrev={handlePrev}  useCache={useCache}/>
         
     
