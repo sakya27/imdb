@@ -96,7 +96,7 @@ export default function WatchList() {
 <Navbar />
       <div className="flex justify-center flex-wrap m-4">
         {genreList.map((genre)=>{
-           return <div onClick={()=>handleFilter(genre)} className={ currGenre==genre?"flex justify-center items-center py-2 px-6 bg-blue-400 rounded-xl text-white font-semibold mx-4" :'flex justify-center items-center py-2 px-6 bg-gray-400/50 rounded-xl text-white font-semibold mx-4' }>
+           return <div onClick={()=>handleFilter(genre)} className={ currGenre==genre?"flex justify-center items-center py-4 px-6 bg-blue-400 rounded-xl text-white font-semibold mx-4" :'flex justify-center items-center py-4 px-6 bg-gray-400/50 rounded-xl text-white font-semibold mx-4' }>
            {genre}
          </div>
         })}
@@ -112,7 +112,7 @@ export default function WatchList() {
         />
       </div>
 
-      <div className="overflow-x-auto rounded-lg border border-gray-200 m-8">
+      <div className="overflow-x-auto flex justify-center rounded-lg border border-gray-200 m-8">
         <table className="min-w-full text-gray-500 text-center">
           <thead className="border-b-2">
             <tr>
@@ -157,7 +157,7 @@ export default function WatchList() {
                     <td>{movieObj.popularity}</td>
                     <td>{genreids[movieObj.genre_ids[0]]}</td>
 
-                    <td onClick={()=>handleRemoveFromWatchlist(movieObj)} className="text-red-800">Delete</td>
+                    <td onClick={()=>handleRemoveFromWatchlist(movieObj)} className="px-4 text-red-800">Delete</td>
                   </tr>
                 );
               })}
