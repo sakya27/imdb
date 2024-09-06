@@ -5,15 +5,30 @@ import Link from 'next/link';
 
 export default function Home() {
 
+    const [isOpen, setIsOpen] = useState(false);
+
     return (
         <>
           <div className='flex border space-x-8 items-center pl-3 py-4'>
 
-            <img className='w-[50px]' src={Logo} alt="" />
+          <div className="container mx-auto px-4">
+          <div className="flex space-x-8 items-center">
 
-            <Link href={`/movies`} className='text-blue-500 text-3xl font-bold'>Movies</Link>
+          <div className="md:hidden">
+            <button
+              onClick={() => setIsOpen(!isOpen)}
+              className="text-blue-500 focus:outline-none"
+            >
+              {/* Menu Icon */}
+              {isOpen ? 'X' : '☰'}
+            </button>
+          </div>
 
-            <Link href={`/watchlist`} className='text-blue-500 text-3xl font-bold'>Watchlist</Link>
+            <Link href={`/movies`} className='text-blue-500 text-xl font-semibold hover:text-blue-700'>Movies</Link>
+
+            <Link href={`/watchlist`} className='text-blue-500 text-xl font-semibold hover:text-blue-700'>Watchlist</Link>
+            </div>
+            </div>
             </div>
         </>
       );

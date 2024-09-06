@@ -48,7 +48,7 @@ export default function Movies() {
         setPageNo(pageNo+1)
     }
 
-    const [useCache, setUseCache] = useState(false);
+    const [useCache, setUseCache] = useState(true);
 
 
 
